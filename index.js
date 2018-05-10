@@ -1,21 +1,17 @@
 import React from 'react';
 import {render} from 'react-dom';
-import sum from './sum'
+import {sum, squareItemsInArr} from './sum'
+import App from './components/App'
 
 
+const renderApp = Component => render(<Component />, document.getElementById("app"))
 
-class App extends React.Component {
-    render(){
-        return (
-            <div>
-           <h1>
-               Hello!
-            </h1>
-            </div>
-        )
-    }
+renderApp(App)
+
+
+if(module.hot){
+    const NewHotModule = require('./components/App')
+    module.hot.accept('./components/App', () =>renderApp(NewHotModule))
 }
-
-
 
 render(<App />, document.getElementById("app"))
